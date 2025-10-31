@@ -227,9 +227,9 @@ export async function classifyResumeSection(text: string): Promise<string> {
       parameters: {
         candidate_labels: ['experience', 'education', 'skills', 'summary', 'projects', 'certifications']
       }
-    })
+    }) as any
     
-    return response.labels[0]
+    return response.labels?.[0] || 'unknown'
   } catch (error) {
     console.error('Section classification failed:', error)
     return 'unknown'
